@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title -->
+    <title>Time & Date</title>
+
+    <!-- Custom CSS File -->
+    <style>
+        .date-time{
+            margin: 200px auto 0;
+            padding: 25px;
+            width: 30%;
+            font-size: 26px;
+            text-align: center;
+            border: 2px solid aqua;
+        }
+    </style>
+
+  </head>
+  <body>
+    
+    <header id="header">
+        <div class="header">
+
+            <div class="date-time">
+                <div>
+                    <small onchange="apnts_reload()" id="clock"></small><br>
+                <small id="date"></small><br>
+                
+                </div>
+            </div>
+
+        </div>
+    </header>
+    
+
+    <!-- Custom JS -->
+    <script>
+
+        // Clock js
+
+        let pagexoffset = () => {
+                    if (document.documentElement.scrollTop>(document.documentElement.scrollHeight-document.documentElement.clientHeight-90)) {
+                        document.getElementById('menu').style.display='none'
+                        document.getElementById('footer').style.display='block'
+                    } else {
+                        document.getElementById('menu').style.display=''
+                        document.getElementById('footer').style.display='none'
+                    }    
+                }
+                function startTime() {
+                    const today = new Date();
+                    let h = today.getHours();
+                    let m = today.getMinutes();
+                    let s = today.getSeconds();
+                    m = checkTime(m);
+                    s = checkTime(s);
+                    document.getElementById('clock').innerHTML =  h + ":" + m + ":" + s;
+                    setTimeout(startTime, 1000);
+                }       
+
+                    function checkTime(i) {
+                      if (i < 10) {i = "0" + i}; 
+                      return i;
+                    }
+                    const d = new Date();
+                    let dd = d.toString()
+                    let dl = dd.split(' ')
+                    let day = dl[0]
+                    let mon = dl[1]
+                    let dt = dl[2]
+                    let yr = dl[3]
+                    let date = day+', '+dt+' '+mon+', '+yr
+                    document.getElementById('date').innerText = date
+
+                    startTime()
+                    
+
+    </script>
+  </body>
+</html>
